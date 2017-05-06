@@ -33,11 +33,14 @@ class pir():
     def __del__(self):
         super().__del__()
 
-    def __callback(self, gpio):
-        if GPIO.input(self.pir):
+    def Detection(self,gpio):
+         if GPIO.input(self.pir):
             self.__rising()
         else:
             self.__falling()
+
+        while GPIO.input(self.pir) == GPIO.LOW
+            time.sleep(0.01)
 
     def __rising(self):
         if self.real:
@@ -58,7 +61,8 @@ class pir():
             self.is_stop = False
 
         self.real = real
-        GPIO.add_event_detect(self.pir, GPIO.BOTH, callback=self.__callback, bouncetime=1)
+        Detection(self.pir,gpio.BOTH)
+
 
     def stop(self):
         if not self.is_stop:
